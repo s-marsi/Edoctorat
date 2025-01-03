@@ -1,18 +1,24 @@
-package com.openclassrooms.edoctorat.models;
+package org.example.edoctorat.Models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
+
 import java.util.Date;
 
-@Entity(name = "Candidat")
+@Entity
 @Data
 public class CandidatModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
+    private long id;
     private String cne;
     private String cin;
+    private String nomCandidat;
+    private String prenomCandidat;
     private String nomCandidatAr;
     private String prenomCandidatAr;
     private String adresse;
@@ -30,10 +36,14 @@ public class CandidatModel {
     private int etatDossier;
     private String situationFamiliale;
     private int pays_id;
-    private int fonctionaire = 0;
+    private int user_id;
+    private int fonctionaire =0;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserModel user;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
-
