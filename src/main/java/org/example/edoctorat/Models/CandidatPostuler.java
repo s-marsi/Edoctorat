@@ -14,4 +14,8 @@ public class CandidatPostuler {
     private String pathFile;
     private int candidat_id;
     private int sujet_id;
+
+    @ManyToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat candidat;
 }
