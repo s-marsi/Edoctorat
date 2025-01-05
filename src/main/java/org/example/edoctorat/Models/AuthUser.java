@@ -27,7 +27,7 @@ public class AuthUser {
 
     @ManyToOne
     @JoinColumn(name = "candidat_id", nullable = false)
-    private CandidatModel candidat;
+    private CandidatCandidat candidat;
 
 
 

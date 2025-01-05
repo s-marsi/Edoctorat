@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class CandidatModel {
+public class CandidatCandidat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

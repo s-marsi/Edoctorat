@@ -1,7 +1,7 @@
 package org.example.edoctorat.Controllers;
 
 
-import org.example.edoctorat.Models.CandidatModel;
+import org.example.edoctorat.Models.CandidatCandidat;
 import org.example.edoctorat.Services.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,22 +16,22 @@ public class CandidatController {
     public CandidatService candidatService;
 
     @GetMapping("/")
-    public List<CandidatModel> getCandidats() {
+    public List<CandidatCandidat> getCandidats() {
         return candidatService.getCandidats();
     }
 
     @GetMapping("/{id}")
-    public Optional<CandidatModel> getCandidatById(@PathVariable Long id) {
+    public Optional<CandidatCandidat> getCandidatById(@PathVariable Long id) {
         return candidatService.getCandidatById(id);
     }
 
     @PostMapping("/")
-    public CandidatModel addCandidat(@RequestBody CandidatModel candidat) { // Add @RequestBody here
+    public CandidatCandidat addCandidat(@RequestBody CandidatCandidat candidat) { // Add @RequestBody here
         return candidatService.addCandidat(candidat);
     }
 
     @PutMapping("/{id}")
-    public CandidatModel updateCandidat(@PathVariable Long id, @RequestBody CandidatModel candidat) { // Add @RequestBody here
+    public CandidatCandidat updateCandidat(@PathVariable Long id, @RequestBody CandidatCandidat candidat) { // Add @RequestBody here
         return candidatService.updateCandidat(id, candidat);
     }
 
@@ -41,7 +41,7 @@ public class CandidatController {
     }
 
     @GetMapping("/{nom}")
-    public List<CandidatModel> getCandidatsByNom(@PathVariable String nom) {
+    public List<CandidatCandidat> getCandidatsByNom(@PathVariable String nom) {
         return candidatService.getCandidatsByNom(nom);
 }
 }
