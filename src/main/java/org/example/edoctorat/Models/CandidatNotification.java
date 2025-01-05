@@ -16,6 +16,9 @@ public class CandidatNotification {
     private int commission_id;
     private int sujet_id;
 
+    @ManyToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat Candidat;
 
 
 }

@@ -12,8 +12,6 @@ public class CandidatCandidat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<AuthUser> authUserListe;
 
     private String cne;
     private String cin;
@@ -36,6 +34,22 @@ public class CandidatCandidat {
     private int pays_id;
     private int user_id;
     private int fonctionaire =0;
+
+    @ManyToOne
+    @JoinColumn(name = "pays_id")
+    private CandidatPays candidatPays;
+
+    @OneToMany(mappedBy = "candidat_candidat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArrayList<CandidatDiplome> candidatDiplomes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat_candidat")
+    private ArrayList<CandidatNotification> candidatNotifications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat_candidat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private  ArrayList<CandidatPostuler> candidatPostulers = new ArrayList<>();
+
+    @OneToOne(mappedBy = "candidat_candidat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ProfesseurInscription professeurInscription;
 
     public long getId() {
         return id;

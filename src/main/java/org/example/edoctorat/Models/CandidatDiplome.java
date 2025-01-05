@@ -1,10 +1,7 @@
 package org.example.edoctorat.Models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -27,4 +24,7 @@ public class CandidatDiplome {
     private double moyen_generale;
     private int candidat_id;
 
+    @ManyToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat candidat;
 }
