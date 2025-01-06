@@ -5,15 +5,16 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 public class CandidatCandidat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<AuthUser> authUserListe;
+    private Long id;
+
 
     private String cne;
     private String cin;
@@ -33,15 +34,42 @@ public class CandidatCandidat {
     private String pathPhoto;
     private int etatDossier;
     private String situation_familiale;
-    private int pays_id;
-    private int user_id;
+    // private int pays_id;
+    // private int user_id;
     private int fonctionaire =0;
 
-    public long getId() {
-        return id;
-    }
+    //! RELATION MANY-TO-ONE : Plusieurs candidatures peuvent appartenir à un même utilisateur
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AuthUser user;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    //! RELATION MANY-TO-ONE : Plusieurs candidats peuvent être associés à un seul pays
+    @ManyToOne
+    @JoinColumn(name = "pays_id")
+    private CandidatPays pays;
+
+    //! RELATION ONE-TO-MANY : Un candidat peut avoir plusieurs diplômes
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<CandidatDiplome> diplomes = new HashSet<>();
+
+    //! RELATION ONE-TO-MANY : Un candidat peut recevoir plusieurs notifications
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<CandidatNotification> notifications = new HashSet<>();
+
+    /*//! RELATION ONE-TO-MANY : Un candidat peut postuler à plusieurs sujets
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<CandidatPostuler> candidatures = new HashSet<>();*/
+    //! RELATION ONE-TO-MANY : Un candidat peut postuler à plusieurs sujets
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<CandidatPostuler> candidatures = new HashSet<>();
+
+    //! RELATION ONE-TO-ONE : Une inscription est unique par candidat
+    @OneToOne(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private ProfesseurInscription inscription;
+
+    //! (Not sure) RELATION ONE-TO-MANY : Un candidat peut être examiné par plusieurs professeurs
+    @OneToMany(mappedBy = "candidat")
+    private Set<ProfesseurExaminer> examinateurs = new HashSet<>();
+
+
 }

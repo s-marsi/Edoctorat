@@ -1,3 +1,4 @@
+/*
 package org.example.edoctorat.Models;
 
 import jakarta.persistence.Entity;
@@ -16,3 +17,4 @@ public class AuthUserAuthPermission {
     private int user_id;
     private int permission_id;
 }
+*/

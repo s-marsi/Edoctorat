@@ -1,4 +1,4 @@
-package org.example.edoctorat.Models;
+/*package org.example.edoctorat.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,4 +16,4 @@ public class AuthUserGroups {
     private int group_id;
 
 
-}
+}*/

@@ -11,6 +11,12 @@ public class ProfesseurCommissionProfesseurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int commission_id;
-    private int professeur_id;
+
+    @ManyToOne
+    @JoinColumn(name = "professeur_id")
+    private ProfesseurProfesseur professeur;
+
+    @ManyToOne
+    @JoinColumn(name = "commission_id")
+    private ProfesseurCommission commission;
 }

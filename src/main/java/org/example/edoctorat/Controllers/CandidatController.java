@@ -30,10 +30,10 @@ public class CandidatController {
         return candidatService.addCandidat(candidat);
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public CandidatCandidat updateCandidat(@PathVariable Long id, @RequestBody CandidatCandidat candidat) { // Add @RequestBody here
         return candidatService.updateCandidat(id, candidat);
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public void deleteCandidat(@PathVariable Long id) {
