@@ -1,9 +1,6 @@
 package org.example.edoctorat.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -19,5 +16,7 @@ public class ProfesseurSujet {
     private int formationDoctorale_id;
     private int professeur_id;
 
-
+    @ManyToOne
+    @JoinColumn(name = "professeur_id")
+    private ProfesseurProfesseur professeur;
 }

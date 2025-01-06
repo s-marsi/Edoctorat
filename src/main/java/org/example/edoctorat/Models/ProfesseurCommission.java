@@ -2,6 +2,8 @@ package org.example.edoctorat.Models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -15,4 +17,12 @@ public class ProfesseurCommission {
     private String lieu;
     private Date heure;
     private int labo_id;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "professeur_commision_professeurs",
+//            joinColumns = @JoinColumn(name = "professeur_id"),
+//            inverseJoinColumns = @JoinColumn(name = "commission_id")
+//    )
+//    private ArrayList<ProfesseurProfesseur> professeurs;
 }

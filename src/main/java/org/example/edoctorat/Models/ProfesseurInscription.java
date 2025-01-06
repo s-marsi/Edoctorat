@@ -16,4 +16,8 @@ public class ProfesseurInscription {
     private int valider;
     private int candidat_id;
     private int sujet_id;
+
+    @OneToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat candidat;
 }

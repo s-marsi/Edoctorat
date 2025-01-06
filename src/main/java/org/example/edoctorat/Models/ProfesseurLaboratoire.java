@@ -18,4 +18,8 @@ public class ProfesseurLaboratoire {
     private int ced_id;
     private int directeur_id;
     private String etablissement_id;
+
+    @ManyToOne
+    @JoinColumn(name = "directeur_id")
+    private ProfesseurProfesseur directeur;
 }

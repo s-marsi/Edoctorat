@@ -23,14 +23,4 @@ public class AuthUser {
     private boolean is_staff;
     private boolean is_active;
     private Date date_joined;
-
-
-    @ManyToOne
-    @JoinColumn(name = "candidat_id", nullable = false)
-    private CandidatCandidat candidat;
-
-
-
-
-
 }
