@@ -3,7 +3,8 @@ package org.example.edoctorat.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -19,20 +20,43 @@ public class ProfesseurProfesseur {
     private String numSOM;
     private int nombreEncadrer;
     private int nombreProposer;
-    private String etablissement_id;
-    private int labo_id;
-    private int user_id;
+    // private String etablissement_id;
+    // private int labo_id;
+    // private int user_id;
 
+
+    //! RELATION ONE-TO-ONE : Un professeur a un seul compte utilisateur
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private AuthUser user;
+
+    //! RELATION MANY-TO-ONE : Un professeur appartient à un établissement
     @ManyToOne
     @JoinColumn(name = "etablissement_id")
-    ProfesseurProfesseur professeur;
+    private ProfesseurEtablissement etablissement;
 
-    @OneToMany(mappedBy = "professeur_professeur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<ProfesseurSujet> professeurSujet;
+    //! (test) RELATION MANY-TO-MANY : Un professeur peut appartenir à plusieurs commissions
+    @OneToMany(mappedBy = "professeur")
+    private Set<ProfesseurCommissionProfesseurs> commissions = new HashSet<>();
 
-//    @ManyToMany(mappedBy = "professeur_professeur")
-//    private ArrayList<ProfesseurCommission> professeurCommission;
-    @OneToMany(mappedBy = "candidat_candidat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<ProfesseurLaboratoire> professeurLaboratoire;
+    //! RELATION MANY-TO-ONE : Un professeur appartient à un laboratoire
+    @ManyToOne
+    @JoinColumn(name = "labo_id")
+    private ProfesseurLaboratoire laboratoire;
 
+    //! RELATION ONE-TO-MANY : Un ProfesseurProfesseur peut diriger plusieurs CED
+    @OneToMany(mappedBy = "directeur")
+    private Set<ProfesseurCed> ceds = new HashSet<>();
+
+    //! RELATION ONE-TO-MANY : Un professeur peut diriger plusieurs laboratoires
+    @OneToMany(mappedBy = "directeur")
+    private Set<ProfesseurLaboratoire> laboratoires = new HashSet<>();
+
+    //! RELATION ONE-TO-MANY : Un professeur peut proposer plusieurs sujets
+    @OneToMany(mappedBy = "professeur", cascade = CascadeType.ALL)
+    private Set<ProfesseurSujet> sujetsProfesseur = new HashSet<>();
+
+    //! RELATION ONE-TO-MANY : Un professeur peut être le co-directeur de plusieurs sujets
+    @OneToMany(mappedBy = "coDirecteur")
+    private Set<ProfesseurSujet> sujetsCoDirecteur = new HashSet<>();
 }

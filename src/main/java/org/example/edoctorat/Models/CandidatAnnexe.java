@@ -1,10 +1,7 @@
 package org.example.edoctorat.Models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 @Entity
 @Data
@@ -15,5 +12,10 @@ public class CandidatAnnexe {
     private String typeAnnexe;
     private String titre;
     private String pathFile;
-    private int diplome_id;
+    // private int diplome_id;
+
+    //! RELATION MANY-TO-ONE : Une annexe est associée à un diplôme
+    @ManyToOne
+    @JoinColumn(name = "diplome_id")
+    private CandidatDiplome diplome;
 }

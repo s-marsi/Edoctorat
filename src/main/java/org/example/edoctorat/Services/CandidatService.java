@@ -26,10 +26,10 @@ public class CandidatService {
         return candidatRepository.save(candidat);
     }
 
-    public CandidatCandidat updateCandidat(Long id, CandidatCandidat candidat) {
+    /*public CandidatCandidat updateCandidat(Long id, CandidatCandidat candidat) {
         candidat.setId(id);
         return candidatRepository.save(candidat);
-    }
+    }*/
 
     public void deleteCandidat(Long id) {
         candidatRepository.deleteById(id);

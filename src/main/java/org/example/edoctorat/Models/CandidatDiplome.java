@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,7 +24,16 @@ public class CandidatDiplome {
     private String ville ;
     private String province;
     private double moyen_generale;
-    private int candidat_id;
+    // private int candidat_id;
+
+    //! RELATION MANY-TO-ONE : Un diplôme appartient à un seul candidat
+    @ManyToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat candidat;
+
+    //! RELATION ONE-TO-MANY : Un diplôme peut avoir plusieurs annexes de candidats
+    @OneToMany(mappedBy = "diplome")
+    private Set<CandidatAnnexe> annexes = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "candidat_id")
