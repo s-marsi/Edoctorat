@@ -14,8 +14,6 @@ public class CandidatCandidat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     private String cne;
     private String cin;
     private String nomCandidatAr;
@@ -70,6 +68,4 @@ public class CandidatCandidat {
     //! (Not sure) RELATION ONE-TO-MANY : Un candidat peut être examiné par plusieurs professeurs
     @OneToMany(mappedBy = "candidat")
     private Set<ProfesseurExaminer> examinateurs = new HashSet<>();
-
-
 }

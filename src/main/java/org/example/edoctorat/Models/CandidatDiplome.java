@@ -35,4 +35,7 @@ public class CandidatDiplome {
     @OneToMany(mappedBy = "diplome")
     private Set<CandidatAnnexe> annexes = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "candidat_id")
+    private CandidatCandidat candidat;
 }

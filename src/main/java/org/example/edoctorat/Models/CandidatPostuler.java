@@ -29,5 +29,4 @@ public class CandidatPostuler {
     @ManyToOne
     @JoinColumn(name = "sujet_id")
     private ProfesseurSujet sujet;*/
-
 }
