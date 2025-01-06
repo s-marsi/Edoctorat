@@ -1,9 +1,6 @@
 package org.example.edoctorat.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -13,8 +10,18 @@ public class AuthGroupPersmissions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int group_id;
-    private int permission_id;
+    // private int group_id;
+    // private int permission_id;
+
+    //! RELATION MANY-TO-ONE : AuthGroup référencé par cette association
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private AuthGroup authGroup;
+
+    //! RELATION MANY-TO-ONE : AuthPermission référencé par cette association
+    @ManyToOne
+    @JoinColumn(name = "permission_id")
+    private AuthPermission authPermission;
 
 
 }
