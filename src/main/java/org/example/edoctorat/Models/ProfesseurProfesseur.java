@@ -1,7 +1,9 @@
 package org.example.edoctorat.Models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Data
+@NoArgsConstructor
+
 public class ProfesseurProfesseur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,4 +63,6 @@ public class ProfesseurProfesseur {
     //! RELATION ONE-TO-MANY : Un professeur peut être le co-directeur de plusieurs sujets
     @OneToMany(mappedBy = "coDirecteur")
     private Set<ProfesseurSujet> sujetsCoDirecteur = new HashSet<>();
+
+
 }
